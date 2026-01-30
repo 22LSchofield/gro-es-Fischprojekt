@@ -38,7 +38,7 @@ namespace ein_großer_fisch
             double Water_volume = TankVolume * 0.8; // vol of water in m^3
             return Water_volume;
         }
-        static void Building_The_Tank_Volume_Glass_Thickness()
+        static void Building_The_Tank_Volume_Glass_Thickness()// calculates thickness of glass
         {
 
         }
