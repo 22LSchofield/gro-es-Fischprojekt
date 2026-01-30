@@ -24,6 +24,10 @@ namespace ein_großer_fisch
     {
         static void Main(string[] args)
         {
+            Building_The_Tank();    
+        }
+        static void Building_The_Tank() // executes all functions to build the tank 
+        {
             // Input tank dimensions
             Console.Write("Enter height of tank(m):");
             double Tank_height = Convert.ToDouble(Console.ReadLine());
@@ -49,7 +53,7 @@ namespace ein_großer_fisch
             //calculate glass area (cm²)
             double glass_area_front_and_back = Building_The_Tank_Glass_Area_Front_And_Back(Tank_height, Tank_width, glass_thickness);
             double glass_area_sides = Building_The_Tank_Glass_Area_Sides(Tank_height, Tank_depth, glass_thickness) * 2;
-            double glass_area_base = Building_The_Tank_Glass_Area_Base(Tank_width,Tank_depth,glass_thickness) * 2;
+            double glass_area_base = Building_The_Tank_Glass_Area_Base(Tank_width, Tank_depth, glass_thickness) * 2;
 
             double total_glass_area = Building_The_Tank_Glass_Area_Sum(glass_area_front_and_back, glass_area_sides, glass_area_base);
             Console.WriteLine("Total glass area(cm²)=" + total_glass_area);
@@ -62,7 +66,6 @@ namespace ein_großer_fisch
             double glass_cost = Building_The_Tank_Glass_Cost(glass_volume);
             Console.WriteLine("Total glass cost(£)=" + glass_cost + "p");
         }
-
         static double Building_The_Tank_Volume(double height, double width, double depth) // calculates vol of tank
         {
             double volume = height * width * depth;
