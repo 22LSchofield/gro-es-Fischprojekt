@@ -29,11 +29,11 @@ namespace ein_großer_fisch
         static void Building_The_Tank() // executes all functions to build the tank 
         {
             // Input tank dimensions
-            Console.Write("Enter height of tank(m):");
+            Console.Write("Enter height of tank(cm):");
             double Tank_height = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter width of tank(m):");
+            Console.Write("Enter width of tank(cm):");
             double Tank_width = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter depth of tank(m):");
+            Console.Write("Enter depth of tank(cm):");
             double Tank_depth = Convert.ToDouble(Console.ReadLine());
 
             // Calculate tank volume
@@ -51,9 +51,9 @@ namespace ein_großer_fisch
             Console.WriteLine("Glass thickness(cm)=" + glass_thickness);
 
             //calculate glass area (cm²)
-            double glass_area_front_and_back = Building_The_Tank_Glass_Area_Front_And_Back(Tank_height, Tank_width, glass_thickness);
-            double glass_area_sides = Building_The_Tank_Glass_Area_Sides(Tank_height, Tank_depth, glass_thickness) * 2;
-            double glass_area_base = Building_The_Tank_Glass_Area_Base(Tank_width, Tank_depth, glass_thickness) * 2;
+            double glass_area_front_and_back = Building_The_Tank_Glass_Area_Front_And_Back(Tank_height, Tank_width);
+            double glass_area_sides = Building_The_Tank_Glass_Area_Sides(Tank_height, Tank_depth, glass_thickness);
+            double glass_area_base = Building_The_Tank_Glass_Area_Base(Tank_width, Tank_depth, glass_thickness);
 
             double total_glass_area = Building_The_Tank_Glass_Area_Sum(glass_area_front_and_back, glass_area_sides, glass_area_base);
             Console.WriteLine("Total glass area(cm²)=" + total_glass_area);
@@ -64,11 +64,11 @@ namespace ein_großer_fisch
 
             // Calculate glass cost (pence)
             double glass_cost = Building_The_Tank_Glass_Cost(glass_volume);
-            Console.WriteLine("Total glass cost(£)=" + glass_cost + "p");
+            Console.WriteLine("Total glass cost=" + glass_cost + "p");
         }
         static double Building_The_Tank_Volume(double height, double width, double depth) // calculates vol of tank
         {
-            double volume = height * width * depth;
+            double volume = (height * width * depth)/ 1000000;
             return volume;
         }
         static double Building_The_Tank_Volume_Water_M(double TankVolume) // calculates amount of water that can go in tank (m³)
@@ -83,40 +83,23 @@ namespace ein_großer_fisch
         }
         static int Building_The_Tank_Glass_Thickness(double water_vol)// calculates thickness of glass
         {
-            int thickness = 0; //cm
-            if (water_vol < 500)
-            {
-                thickness = 1;
-            }
-            else
-            {
-                water_vol -= 500;
-
-                while (water_vol > 0)
-                {
-                    thickness *= 2;
-                    water_vol -= 250;
-                }
-            }
-            return thickness;
+            int power = Math.Floor(water_vol / 250) - 1;
+            int thickness = Math.Pow(2,power); //cm
         }
 
-        static double Building_The_Tank_Glass_Area_Front_And_Back(double height, double width, int thickness)// calculates  area of glass front and back
-        {
-            double front_area = (height * width);
-            front_area += (thickness * 2);
-            return front_area;
+        static double Building_The_Tank_Glass_Area_Front_And_Back(double height, double width,)// calculates  area of glass front and back
+        {         
+            double area_front = 2 * (height * width);
+            return area_front;
         }
-        static double Building_The_Tank_Glass_Area_Sides(double height, double depth, int thickness)// calculates  area of glass sides
+        static double Building_The_Tank_Glass_Area_Sides(double height, double depth,int thickness)// calculates  area of glass sides
         {
-            double sides_area = (height * depth);
-            sides_area += (thickness * 2);
-            return sides_area;
+            double area_sides = 2 * (depth+ thickness * 2) * height);
+            return area_sides;
         }
         static double Building_The_Tank_Glass_Area_Base(double width, double depth, int thickness)// calculates  area of glass bottom
-        {
-            double base_area = (width * depth);
-            base_area += (thickness * 2) * 4;
+        {         
+            double base_area = (width + thickness * 2) * (depth + thickness * 2);
             return base_area;
         }
         static double Building_The_Tank_Glass_Area_Sum(double front, double side, double bottom)// calculates total area of glass
