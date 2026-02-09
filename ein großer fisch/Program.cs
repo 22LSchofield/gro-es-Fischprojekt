@@ -22,33 +22,69 @@ namespace ein_großer_fisch
 {
     internal class Program
     {
+        static void set_font_white()// sets text to white
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void set_font_blue()// sets text to blue
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+        }
+        static void set_font_purple()// sets text to purple
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        }
+        static void set_font_orange()// sets text to orange
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+        }
         static void Main(string[] args)
         {
-            Building_The_Tank();    
+            Console.ForegroundColor = ConsoleColor.DarkCyan; //blue for fish tank
+            Building_The_Tank();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta; // purple for choosing fish
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow; // orange for
         }
         static void Building_The_Tank() // executes all functions to build the tank 
         {
             // Input tank dimensions
             Console.Write("Enter height of tank(cm):");
+            set_font_white();
             double Tank_height = Convert.ToDouble(Console.ReadLine());
+            set_font_blue();
             Console.Write("Enter width of tank(cm):");
+            set_font_white();
             double Tank_width = Convert.ToDouble(Console.ReadLine());
+            set_font_blue();
             Console.Write("Enter depth of tank(cm):");
+            set_font_white();
             double Tank_depth = Convert.ToDouble(Console.ReadLine());
-
+            set_font_blue();
             // Calculate tank volume
             double Tank_volume = Building_The_Tank_Volume(Tank_height, Tank_width, Tank_depth);
-            Console.WriteLine("Volume of tank(m³)=" + Tank_volume);
-
+            Console.WriteLine("Volume of tank(m³)= ");
+            set_font_white();
+            Console.WriteLine(Tank_volume);
+            set_font_blue();
             // Calculate water volume
             double Water_volume_metres = Building_The_Tank_Volume_Water_M(Tank_volume);// vol of water in m³
             double Water_volume_litres = Building_The_Tank_Volume_Water_L(Water_volume_metres);// vol of water in litres
-            Console.WriteLine("Recommended volume of water(m³)=" + Water_volume_metres);
-            Console.WriteLine("Recommended volume of water(l)=" + Water_volume_litres);
+            Console.Write("Recommended volume of water(m³)= ");
+            set_font_white();
+            Console.WriteLine(Water_volume_metres);
+            set_font_blue();
+            Console.Write("Recommended volume of water(l)= ");
+            set_font_white();
+            Console.WriteLine(Water_volume_litres);
+            set_font_blue();
 
             // Calculate glass thickness
-            int glass_thickness = Building_The_Tank_Glass_Thickness(Water_volume_litres);
-            Console.WriteLine("Glass thickness(cm)=" + glass_thickness);
+            double glass_thickness = Building_The_Tank_Glass_Thickness(Water_volume_litres);
+            Console.Write("Glass thickness(cm)= ");
+            set_font_white();
+            Console.WriteLine(glass_thickness);
+            set_font_blue();
 
             //calculate glass area (cm²)
             double glass_area_front_and_back = Building_The_Tank_Glass_Area_Front_And_Back(Tank_height, Tank_width);
@@ -56,19 +92,36 @@ namespace ein_großer_fisch
             double glass_area_base = Building_The_Tank_Glass_Area_Base(Tank_width, Tank_depth, glass_thickness);
 
             double total_glass_area = Building_The_Tank_Glass_Area_Sum(glass_area_front_and_back, glass_area_sides, glass_area_base);
-            Console.WriteLine("Total glass area(cm²)=" + total_glass_area);
+            Console.Write("Total glass area(cm²)= ");
+            set_font_white();
+            Console.WriteLine(total_glass_area);
+            set_font_blue();
 
             // Calculate glass volume (cm³)
             double glass_volume = Building_The_Tank_Glass_Volume(total_glass_area, glass_thickness);
-            Console.WriteLine("Total glass volume(cm³)=" + glass_volume);
+            Console.Write("Total glass volume(cm³)= ");
+            set_font_white();
+            Console.WriteLine(glass_volume);
+            set_font_blue();
 
             // Calculate glass cost (pence)
-            double glass_cost = Building_The_Tank_Glass_Cost(glass_volume);
-            Console.WriteLine("Total glass cost=" + glass_cost + "p");
+            double glass_cost_pence = Building_The_Tank_Glass_Cost_Pence(glass_volume);
+            Console.Write("Total glass cost= ");
+            set_font_white();
+            Console.Write(glass_cost_pence);           
+            Console.WriteLine("p");
+            set_font_blue();
+
+            // Calculate glass cost (pounds)
+            double glass_cost_pounds = Building_The_Tank_Glass_Cost_Pounds(glass_cost_pence);
+            Console.Write("Total glass cost= £");
+            set_font_white();
+            Console.WriteLine(glass_cost_pounds);
+            set_font_blue();
         }
         static double Building_The_Tank_Volume(double height, double width, double depth) // calculates vol of tank
         {
-            double volume = (height * width * depth)/ 1000000;
+            double volume = (height * width * depth) / 1000000;
             return volume;
         }
         static double Building_The_Tank_Volume_Water_M(double TankVolume) // calculates amount of water that can go in tank (m³)
@@ -81,24 +134,29 @@ namespace ein_großer_fisch
             double Watervolume_l = waterVolume * 1000;
             return Watervolume_l;
         }
-        static int Building_The_Tank_Glass_Thickness(double water_vol)// calculates thickness of glass
+        static double Building_The_Tank_Glass_Thickness(double water_vol)// calculates thickness of glass
         {
-            int power = Math.Floor(water_vol / 250) - 1;
-            int thickness = Math.Pow(2,power); //cm
+            double power = Math.Floor(water_vol / 250) - 1;
+            double thickness = Math.Pow(2, power); //cm
+            if (thickness < 1)
+            {
+                thickness = 1;
+            }
+            return thickness;
         }
 
-        static double Building_The_Tank_Glass_Area_Front_And_Back(double height, double width,)// calculates  area of glass front and back
-        {         
+        static double Building_The_Tank_Glass_Area_Front_And_Back(double height, double width)// calculates  area of glass front and back
+        {
             double area_front = 2 * (height * width);
             return area_front;
         }
-        static double Building_The_Tank_Glass_Area_Sides(double height, double depth,int thickness)// calculates  area of glass sides
+        static double Building_The_Tank_Glass_Area_Sides(double height, double depth, double thickness)// calculates  area of glass sides
         {
-            double area_sides = 2 * (depth+ thickness * 2) * height);
+            double area_sides = 2 * ((depth + thickness * 2) * height);
             return area_sides;
         }
-        static double Building_The_Tank_Glass_Area_Base(double width, double depth, int thickness)// calculates  area of glass bottom
-        {         
+        static double Building_The_Tank_Glass_Area_Base(double width, double depth, double thickness)// calculates  area of glass bottom
+        {
             double base_area = (width + thickness * 2) * (depth + thickness * 2);
             return base_area;
         }
@@ -107,16 +165,24 @@ namespace ein_großer_fisch
             double total_area = front + side + bottom;
             return total_area;
         }
-        static double Building_The_Tank_Glass_Volume(double area, int thickness)// calculates volume of glass (cm³)
+        static double Building_The_Tank_Glass_Volume(double area, double thickness)// calculates volume of glass (cm³)
         {
             double glass_volume = area * thickness;
             return glass_volume;
         }
-        static double Building_The_Tank_Glass_Cost(double volume_ofglass)// calculates cost of glass (pence)
+        static double Building_The_Tank_Glass_Cost_Pence(double volume_ofglass)// calculates cost of glass (pence)
         {
-           double cost = volume_ofglass * 1.2;
-           return cost;
+            double cost = volume_ofglass * 1.2;
+            return cost;
         }
+        static double Building_The_Tank_Glass_Cost_Pounds(double costpence)// calculates cost of glass (pounds)
+        {
+            double costpounds = costpence / 100;
+
+            return costpounds;
+
+        }
+
+        
     }
 }
-
