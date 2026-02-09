@@ -144,7 +144,6 @@ namespace ein_großer_fisch
             }
             return thickness;
         }
-
         static double Building_The_Tank_Glass_Area_Front_And_Back(double height, double width)// calculates  area of glass front and back
         {
             double area_front = 2 * (height * width);
@@ -183,6 +182,16 @@ namespace ein_großer_fisch
 
         }
 
-        
+        static void Choosing_The_fish()
+        {
+
+        }
+
+        static void Choosing_The_Fish_Fixed_Costs()
+        {
+
+        }
+
+
     }
 }
