@@ -63,7 +63,7 @@ namespace ein_großer_fisch
             set_font_blue();
             // Calculate tank volume
             double Tank_volume = Building_The_Tank_Volume(Tank_height, Tank_width, Tank_depth);
-            Console.WriteLine("Volume of tank(m³)= ");
+            Console.Write("Volume of tank(m³)= ");
             set_font_white();
             Console.WriteLine(Tank_volume);
             set_font_blue();
@@ -108,7 +108,7 @@ namespace ein_großer_fisch
             double glass_cost_pence = Building_The_Tank_Glass_Cost_Pence(glass_volume);
             Console.Write("Total glass cost= ");
             set_font_white();
-            Console.Write(glass_cost_pence);           
+            Console.Write(glass_cost_pence);
             Console.WriteLine("p");
             set_font_blue();
 
@@ -197,7 +197,7 @@ namespace ein_großer_fisch
 
         }
 
-        struct Fish 
+        struct Fish
         {
             public string name;
             public string waterType;
@@ -209,7 +209,7 @@ namespace ein_großer_fisch
 
             public Fish(string name, string watertype, string colour, string socialtype, bool iridescent, double unitprice, string size)
             {
-               
+
 
             }
         }
@@ -236,8 +236,8 @@ namespace ein_großer_fisch
                 new Fish("Clownfish", "Warm", "Colourful", "Solitary", true, 12.00, "Medium"),
                 new Fish("Rainbow Trout", "Cold", "Muted", "Solitary", false, 5.00, "Medium"),
                 new Fish("Gourami", "Cold", "Colourful", "Shoaling", true, 4.00, "Medium")
-            }
-
+            };
+            return aquarium;
 
 
 
