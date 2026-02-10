@@ -192,6 +192,57 @@ namespace ein_großer_fisch
 
         }
 
+        static void Choosing_The_Fish_Species()
+        {
+
+        }
+
+        struct Fish 
+        {
+            public string name;
+            public string waterType;
+            public string colour;
+            public string socialType;
+            public bool iridescent;
+            public double unitPrice;
+            public string size;
+
+            public Fish(string name, string watertype, string colour, string socialtype, bool iridescent, double unitprice, string size)
+            {
+               
+
+            }
+        }
+
+        static Fish[] Choosing_The_Fish_shopList()
+        {
+            Fish[] aquarium = new Fish[]
+            {
+                new Fish("Neon Tetra", "Warm", "Colourful", "Shoaling", true, 1.50, "Small"),
+                new Fish("Goldfish", "Cold", "Muted", "Solitary", false, 5.00, "Medium"),
+                new Fish ("Guppy", "Warm", "Colourful", "Shoaling", true, 2.00, "Small"),
+                new Fish("Betta", "Warm", "Colourful", "Solitary", true, 8.00, "Medium"),
+                new Fish("White Cloud Mountain Minnow", "Cold", "Muted", "Shoaling", false, 1.80, "Small"),
+                new Fish("Zebra Danio", "Warm", "Muted", "Shoaling", false, 1.20, "Small"),
+                new Fish("Corydoras Catfish", "Warm", "Muted", "Shoaling", false, 3.00, "Medium"),
+                new Fish("Angelfish", "Warm", "Colourful", "Shoaling", true, 10.00, "Large"),
+                new Fish("Molly", "Cold", "Colourful", "Shoaling", true, 2.50, "Medium"),
+                new Fish("Swordtail", "Cold", "Colourful", "Shoaling", true, 3.00, "Medium"),
+                new Fish("Platy", "Warm", "Colourful", "Shoaling", true, 2.00, "Small"),
+                new Fish("Cherry Barb", "Cold", "Colourful", "Shoaling", true, 1.80, "Small"),
+                new Fish("Rainbowfish", "Cold", "Colourful", "Shoaling", true, 4.00, "Medium"),
+                new Fish("Oscar", "Cold", "Colourful", "Solitary", true, 15.00, "Large"),
+                new Fish("Discus", "Warm", "Colourful", "Shoaling", true, 20.00, "Large"),
+                new Fish("Clownfish", "Warm", "Colourful", "Solitary", true, 12.00, "Medium"),
+                new Fish("Rainbow Trout", "Cold", "Muted", "Solitary", false, 5.00, "Medium"),
+                new Fish("Gourami", "Cold", "Colourful", "Shoaling", true, 4.00, "Medium")
+            }
+
+
+
+
+        }
+
 
     }
 }
